@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const { HackAtPnpApiPlugin } = require('./HackPnpApiPlugin');
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.jsx'),
@@ -13,9 +13,10 @@ module.exports = {
         filename: 'bundle.[contentHash].js',
         publicPath: '/'
     },
-    
+    resolve: {  
+        plugins: [new HackAtPnpApiPlugin()]
+    },
     mode: 'development',
-
     module: {
         rules: [
             {
