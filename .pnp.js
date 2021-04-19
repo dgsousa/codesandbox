@@ -1527,7 +1527,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],
       [
         "enhanced-resolve",
-        "npm:5.8.0"
+        "patch:enhanced-resolve@npm%3A5.8.0#./fix-enhanced-resolve.patch::version=5.8.0&hash=e36c7d&locator=sandbox3%40workspace%3A."
       ],
       [
         "enquirer",
@@ -3063,6 +3063,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-loader", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:8.2.2"],
             ["clean-webpack-plugin", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:4.0.0-alpha.0"],
             ["css-loader", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:5.2.4"],
+            ["enhanced-resolve", "patch:enhanced-resolve@npm%3A5.8.0#./fix-enhanced-resolve.patch::version=5.8.0&hash=e36c7d&locator=sandbox3%40workspace%3A."],
             ["file-loader", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:6.2.0"],
             ["html-webpack-plugin", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:5.3.1"],
             ["mini-css-extract-plugin", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:1.5.0"],
@@ -11850,10 +11851,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["enhanced-resolve", [
-        ["npm:5.8.0", {
-          "packageLocation": "./.yarn/cache/enhanced-resolve-npm-5.8.0-83f584f25d-a3e1131c9b.zip/node_modules/enhanced-resolve/",
+        ["patch:enhanced-resolve@npm%3A5.8.0#./fix-enhanced-resolve.patch::version=5.8.0&hash=e36c7d&locator=sandbox3%40workspace%3A.", {
+          "packageLocation": "./.yarn/cache/enhanced-resolve-patch-ec6b24953f-a705da67f0.zip/node_modules/enhanced-resolve/",
           "packageDependencies": [
-            ["enhanced-resolve", "npm:5.8.0"],
+            ["enhanced-resolve", "patch:enhanced-resolve@npm%3A5.8.0#./fix-enhanced-resolve.patch::version=5.8.0&hash=e36c7d&locator=sandbox3%40workspace%3A."],
             ["graceful-fs", "npm:4.2.6"],
             ["tapable", "npm:2.2.0"]
           ],
@@ -15387,6 +15388,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-loader", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:8.2.2"],
             ["clean-webpack-plugin", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:4.0.0-alpha.0"],
             ["css-loader", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:5.2.4"],
+            ["enhanced-resolve", "patch:enhanced-resolve@npm%3A5.8.0#./fix-enhanced-resolve.patch::version=5.8.0&hash=e36c7d&locator=sandbox3%40workspace%3A."],
             ["file-loader", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:6.2.0"],
             ["html-webpack-plugin", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:5.3.1"],
             ["mini-css-extract-plugin", "virtual:ae68da81b3f84ff2b27c4e176f16d9ad9b2abe9748efbe3463573bbc7508342cbbe2db0bae6b3aaa4e3a4d908489bb02585d3d8da0da9d67276b87d7a37b3aa7#npm:1.5.0"],
@@ -16406,7 +16408,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["acorn", "npm:8.1.1"],
             ["browserslist", "npm:4.16.4"],
             ["chrome-trace-event", "npm:1.0.3"],
-            ["enhanced-resolve", "npm:5.8.0"],
+            ["enhanced-resolve", "patch:enhanced-resolve@npm%3A5.8.0#./fix-enhanced-resolve.patch::version=5.8.0&hash=e36c7d&locator=sandbox3%40workspace%3A."],
             ["es-module-lexer", "npm:0.4.1"],
             ["eslint-scope", "npm:5.1.1"],
             ["events", "npm:3.3.0"],
