@@ -1,0 +1,40 @@
+diff --git a/lib/PnpPlugin.js b/lib/PnpPlugin.js
+index cecb7ddc47043570db2ed6f968412e480744be67..1986a69f716da2086c7d73f25b6c3df5dd5823ce 100644
+--- a/lib/PnpPlugin.js
++++ b/lib/PnpPlugin.js
+@@ -30,6 +30,19 @@ module.exports = class PnpPlugin {
+ 	 */
+ 	apply(resolver) {
+ 		const target = resolver.ensureHook(this.target);
++		const prevVirtuals = {};
++		function dedupeSameCacheVirtual(resolved) {
++			const matched = resolved.match(/\$\$virtual\/.*?\/cache\/(.*?\.zip\/)(.*)/i);
++			if (matched && matched[1]) {
++				const cacheKey = matched[1];
++				if (prevVirtuals[cacheKey]) {
++					const deduped = prevVirtuals[cacheKey];
++					return deduped + matched[2];
++				}
++				prevVirtuals[cacheKey] = resolved.split('.zip/')[0] + '.zip/';
++			}
++			return resolved;
++		}
+ 		resolver
+ 			.getHook(this.source)
+ 			.tapAsync("PnpPlugin", (request, resolveContext, callback) => {
+@@ -78,7 +91,14 @@ module.exports = class PnpPlugin {
+ 				if (apiResolution && resolveContext.fileDependencies) {
+ 					resolveContext.fileDependencies.add(apiResolution);
+ 				}
+-
++				const before = resolution;
++				const after = dedupeSameCacheVirtual(resolution);
++				if (before !== after) {
++					console.log('found duplicate virtual cache entry and deduplicated:');
++					console.log('before', before);
++					console.log('after ', after);
++				}
++				resolution = after;
+ 				const obj = {
+ 					...request,
+ 					path: resolution,

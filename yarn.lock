@@ -4733,13 +4733,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^5.8.0":
+enhanced-resolve@^5.8.0:
   version: 5.8.0
   resolution: "enhanced-resolve@npm:5.8.0"
   dependencies:
     graceful-fs: ^4.2.4
     tapable: ^2.2.0
   checksum: a3e1131c9ba0dd6f8276f068ddac4e6469d824ee8132f748e2734722b9f25360f4cb5a7fbec1cab8cd56815a6762e0bb1b8d088cbdf2a276d30d573ac5528bbb
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@patch:enhanced-resolve@^5.8.0#./fix-enhanced-resolve.patch::locator=sandbox3%40workspace%3A.":
+  version: 5.8.0
+  resolution: "enhanced-resolve@patch:enhanced-resolve@npm%3A5.8.0#./fix-enhanced-resolve.patch::version=5.8.0&hash=e36c7d&locator=sandbox3%40workspace%3A."
+  dependencies:
+    graceful-fs: ^4.2.4
+    tapable: ^2.2.0
+  checksum: a705da67f08cc992c1b226396e432c96e326dce98672b605bed888cb9da8f696e5f29da9cfd3693477bb6756276c8e372deda5bb6dd548474d87f3a2b9bae99b
   languageName: node
   linkType: hard
 
@@ -7775,6 +7785,7 @@ fsevents@^1.2.7:
     babel-loader: ^8.2.2
     clean-webpack-plugin: ^4.0.0-alpha.0
     css-loader: ^5.2.4
+    enhanced-resolve: "patch:enhanced-resolve@^5.8.0#./fix-enhanced-resolve.patch"
     file-loader: ^6.2.0
     html-webpack-plugin: ^5.3.1
     mini-css-extract-plugin: ^1.5.0
