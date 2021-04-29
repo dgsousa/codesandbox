@@ -25,7 +25,11 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "start": "webpack serve --open chrome",
-    "build": "webpack --mode production"
+    "dev": "webpack serve --open chrome",
+    "build": "webpack --mode production",
+    "test": "node test.js"
+  },
+  "resolutions": {
+    "@react-spectrum/provider": "3.1.3"
   }
 }
