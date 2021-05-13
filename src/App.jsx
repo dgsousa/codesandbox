@@ -34,14 +34,10 @@ export default function App() {
   const shrink = widthUnder1100;
   return (
     <Provider theme={ defaultTheme } colorScheme='light'>
-      {/* <Flex
-        alignContent='stretch'
-        alignItems='center'
-        justifyContent='space-between'
-      > */}
-        <View
+      <Flex>
+        <div
           data-id='collapse'
-          width={ shrink ? '200px' : 'auto' }>
+          style={ { width: shrink ? '200px' : 'auto' } }>
           <Tabs aria-label='Chat log collapse example'>
             <Item title='John Doe' key='item1'>
               <Content marginTop='size-250' marginStart='size-125'>
@@ -59,8 +55,8 @@ export default function App() {
               </Content>
             </Item>
           </Tabs>
-        </View>
-      {/* </Flex> */}
+        </div>
+      </Flex>
     </Provider>
   );
 }
