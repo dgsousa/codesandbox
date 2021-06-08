@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const webpack = require('webpack');
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.jsx'),
@@ -51,7 +51,18 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'styles.[contentHash].css'
-        })
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development')
+        }),
+        new webpack.DefinePlugin({
+            'process.env.SCALE_MEDIUM': 'true',
+            'process.env.SCALE_LARGE': 'false',
+            'process.env.THEME_LIGHT': 'true',
+            'process.env.THEME_LIGHTEST': 'false',
+            'process.env.THEME_DARK': 'false',
+            'process.env.THEME_DARKEST': 'true',
+        }),
     ],
 
     devServer: {

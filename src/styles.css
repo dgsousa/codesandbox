@@ -1,6 +1,12 @@
-body {
-    background-color: black;
+.Container {
+    height: calc(100vh - 48px);
+    width: 100%;
 }
-h1 {
-    color: white;
+
+.Provider svg {
+    box-sizing: unset;
+}
+
+.InventoryWrapper {
+    height: calc(100% - 39px);
 }
