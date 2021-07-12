@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Inventory,
-  Table,
+  TableView,
   ViewHeader,
   Counter,
   Search,
@@ -123,8 +123,8 @@ const App = () => (
             }}
           </FilterList>
         </ViewHeader>
-        <Table columns={ fileColumns }>
-        </Table>
+        <TableView columns={ fileColumns }>
+        </TableView>
       </Inventory>
     </View>
   </V3Provider>);
