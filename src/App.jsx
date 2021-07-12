@@ -22,7 +22,6 @@ import {
   Checkbox,
   CheckboxGroup
 } from '@adobe/react-spectrum';
-import Provider from '@react/react-spectrum/Provider';
 import './styles.css';
 
 export const fileColumns = [
