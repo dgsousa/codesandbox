@@ -4,10 +4,12 @@ import {
   Table,
   ViewHeader,
   Counter,
-  Cell,
-  Row,
   Search,
   FilterRail,
+  FilterList,
+  FilterGroup,
+  FilterValue,
+  FilterTag,
 } from '@quarry/inventory';
 import CrossLarge from '@spectrum-icons/ui/CrossLarge';
 import {
@@ -17,7 +19,10 @@ import {
   Header,
   Flex,
   ActionButton,
+  Checkbox,
+  CheckboxGroup
 } from '@adobe/react-spectrum';
+import Provider from '@react/react-spectrum/Provider';
 import './styles.css';
 
 export const fileColumns = [
@@ -41,6 +46,20 @@ export const fileColumns = [
   },
 ];
 
+const filters = [
+  {
+    id: "1",
+    displayName: "Red"
+  },
+  {
+    id: "2",
+    displayName: "Blue"
+  },
+  {
+    id: "3",
+    displayName: "Green"
+  }
+]
 
 const App = () => (
   <V3Provider
@@ -64,14 +83,47 @@ const App = () => (
           height='100%'
           onFilterChange={ () => {} }
       >
-        <FilterRail />
+        <FilterRail >
+          <FilterGroup title={ 'Colors' }>
+            {({
+              onFilterChange,
+            }) => (
+              <CheckboxGroup
+                // eslint-disable-next-line react-perf/jsx-no-new-function-as-prop
+                onChange={ values => onFilterChange('colors', values) }
+                aria-label={ 'Colors' }>
+                { filters.map(({
+                  id, displayName,
+                }) => (
+                  <Checkbox value={ displayName } key={ id }>{ displayName }</Checkbox>
+                ))}
+              </CheckboxGroup>
+            )}
+          </FilterGroup>
+        </FilterRail>
         <ViewHeader>
-        <Search />
-        <Counter />
+          <Search />
+          <Counter />
+          <FilterList>
+            {([
+              key,
+              values,
+            ]) => {
+              let filterValues;
+              if (Array.isArray(values)) {
+                filterValues = values.map(val => <FilterValue key={ val } value={ val } />);
+              } else {
+                filterValues = <FilterValue value={ values } />;
+              }
+              return (
+                <FilterTag label={ key } value={ key }>
+                  { filterValues }
+                </FilterTag>
+              );
+            }}
+          </FilterList>
         </ViewHeader>
-        <Table
-          columns={ fileColumns }
-          >
+        <Table columns={ fileColumns }>
         </Table>
       </Inventory>
     </View>
