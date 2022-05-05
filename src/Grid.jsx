@@ -1,76 +1,79 @@
-import React from "react";
-import { GridCollection, useGridState } from '@react-stately/grid';
-import { useGrid } from '@react-aria/grid';
-import { useListState } from '@react-stately/list';
-import {useListData} from '@react-stately/data';
-import GridItem from './GridItem.jsx';
+import React from 'react';
+import {GridCollection, useGridState} from '@react-stately/grid';
+import {mergeProps} from '@react-aria/utils';
+import {useFocus} from '@react-aria/interactions';
+import { useGrid, useGridRow, useGridCell } from '@react-aria/grid';
+import {useListState} from '@react-stately/list';
 
-const items = [
-    {id: '1', key: '1', type: 'item', text: 'One'},
-    {id: '2', key: '2', type: 'item', text: 'Two'},
-    {id: '3', key: '3', type: 'item', text: 'Three'},
-    {id: '4', key: '4', type: 'item', text: 'Four'},
-    {id: '5', key: '5', type: 'item', text: 'Five'},
-    {id: '6', key: '6', type: 'item', text: 'Six'}
-]
+function onSelectionChange() {
+    // only gets hit when Provider does not exist in component heirarchy
+    console.log('triggered');
+}
 
-export default function Grid({
-    children,
-}) {
-    const ref =  React.useRef();
-
-    const onSelectionChange = () => {
-        console.log('onSelectionChange')
-    };
-
-    const listData = useListData({ initialItems: items });
-
-    const listState = useListState({
-        ...listData,
-        children,
-        disabledKeys: []
-    });
-
-    const gridCollectionItems = [...listState.collection].map(item => {
-        const node = [{
-            key: `cell-${item.key}`,
-            type: 'cell',
-            index: 0,
-            value: {},
-            level: 0,
-            rendered: null,
-            textValue: item.text,
-            hasChildNodes: false,
-            childNodes: [],
-          }];
-        return {
-            ...item,
-            childNode: node,
-        }
+export default function Grid(props) {
+  let {gridFocusMode = 'row', cellFocusMode = 'child'} = props;
+  let state = useListState(props);
+  let gridState = useGridState({
+    ...props,
+    onSelectionChange,
+    selectionMode: 'multiple',
+    collection: new GridCollection({
+      columnCount: 1,
+      items: [...state.collection].map(item => ({
+        type: 'item',
+        childNodes: [{
+          ...item,
+          index: 0,
+          type: 'cell'
+        }]
+      }))
     })
+  });
 
-    const gridState = useGridState({
-        selectionMode: 'multiple',
-        onSelectionChange,
-        selectedKeys: listState.selectedKeys,
-        focusMode: 'cell',
-        collection: new GridCollection({
-            columnCount: 1,
-            items: gridCollectionItems,
-        }),
-    });
+  let ref = React.useRef();
+  let {gridProps} = useGrid({
+    'aria-label': 'Grid',
+    focusMode: gridFocusMode
+  }, gridState, ref);
 
-    const { gridProps } = useGrid({
-        ...items,
-        'aria-label': 'example list',
-        focusMode: 'row',
-    }, gridState, ref);
+  return (
+    <div {...gridProps} ref={ref}>
+      {[...gridState.collection].map(item =>
+        (<Row
+          key={item.key}
+          state={gridState}
+          item={item}
+          focusMode={cellFocusMode} />)
+      )}
+    </div>
+  );
+}
 
-    return (
-        <div ref={ref}>
-        { gridState.collection.rows.map(item => (
-            <GridItem item={ item } key={ item.key } gridState={ gridState } />
-        ))}
-        </div>
-    )
+function Row({state, item, focusMode}) {
+  let rowRef = React.useRef();
+  let cellRef = React.useRef();
+  let cellNode = [...item.childNodes][0];
+  let {rowProps} = useGridRow({node: item}, state, rowRef);
+  let {gridCellProps} = useGridCell({
+    node: cellNode,
+    focusMode
+  }, state, cellRef);
+
+  let [isRowFocused, setRowFocused] = React.useState(false);
+  let {focusProps: rowFocusProps} = useFocus({
+    onFocusChange: setRowFocused
+  });
+
+  let [isCellFocused, setCellFocused] = React.useState(false);
+  let {focusProps: cellFocusProps} = useFocus({
+    onFocusChange: setCellFocused
+  });
+
+  return (
+    <div {...mergeProps(rowProps, rowFocusProps)} ref={rowRef} style={{outline: isRowFocused ? '2px solid red' : null}}>
+      <div {...mergeProps(gridCellProps, cellFocusProps)} ref={cellRef} style={{outline: isCellFocused ? '2px solid green' : null}}>
+        {cellNode.rendered}
+      </div>
+    </div>
+  );
 }
