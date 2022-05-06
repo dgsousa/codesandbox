@@ -1,0 +1,128 @@
+.Container {
+  height: 500px;
+  width: 500px;
+  border: 1px solid red;
+}
+
+.Draggable {
+    width: 100%;
+    box-sizing: border-box;
+    height: var(--spectrum-global-dimension-static-size-300); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spectrum-global-dimension-static-size-150); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    margin: map(gutter, gutter4) 0;
+    border-radius: var(--spectrum-alias-border-radius-regular); /* stylelint-disable-line plugin/stylelint-postcss-map */
+  
+    &.Dragging {
+      background: var(--spectrum-global-color-gray-75); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      border-color: var(--spectrum-global-color-gray-200); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  
+    &:focusring {
+      border-color: var(--spectrum-dropzone-border-color-selected-hover); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      box-shadow: 0 0 0 1px var(--spectrum-dropzone-border-color-selected-hover); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  
+    > span {
+      margin-left: var(--spectrum-global-dimension-static-size-100); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      flex: 1;
+      display: flex;
+      align-items: center;
+      svg { /* stylelint-disable-line selector-max-type */
+        margin-right: var(--spectrum-global-dimension-static-size-100); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      }
+    }
+  
+    &.DragPreview {
+      margin: 0;
+      border-color: var(--spectrum-dropzone-border-color-selected-hover); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  
+    .Badge {
+      color: map(colors, white);
+      background: var(--spectrum-global-color-blue-400); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      padding: 0 map(gutter, gutter8);
+      border-radius: var(--spectrum-alias-border-radius-regular) /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  }
+  
+  .DragHandle {
+    height: map(heights, heightSmaller);
+    border-radius: var(--spectrum-alias-border-radius-small); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    margin-right: map(gutter, gutterLarge);
+    display: flex;
+    align-items: end;
+    &:focus {
+      outline: none;
+    }
+    &:focusring {
+      box-shadow: 0 0 0 2px var(--spectrum-dropzone-border-color-selected-hover); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  }
+  
+  .DroppableCollection {
+    outline: none;
+    border: 1px solid map(colors, static_gray300);
+    border-radius: var(--spectrum-alias-border-radius-regular); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    padding: 0 map(gutter, gutter4);
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  
+    &.IsDropTarget {
+      background-color: var(--spectrum-dropzone-background-color-selected-hover); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      box-shadow: 0 0 0 2px var(--spectrum-dropzone-border-color-selected-hover); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  }
+  
+  .FocusRing {
+    border-color: var(--spectrum-global-color-blue-400); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    box-shadow: 0 0 0 1px var(--spectrum-global-color-blue-400); /* stylelint-disable-line plugin/stylelint-postcss-map */
+  }
+  
+  .DropIndicator {
+    position: relative;
+    background: var(--spectrum-global-color-blue-400); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: var(--spectrum-global-dimension-static-size-150); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      height: var(--spectrum-global-dimension-static-size-150); /* stylelint-disable-line plugin/stylelint-postcss-map */
+      border-radius: 50%;
+      border: var(--spectrum-alias-border-size-thick) solid; /* stylelint-disable-line plugin/stylelint-postcss-map */
+      box-sizing: border-box;
+      border-color: var(--spectrum-global-color-blue-400); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  }
+  
+  .DropIndicatorHorizontal {
+    height: var(--spectrum-dropindicator-border-size); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    margin: 0 var(--spectrum-global-dimension-static-size-150); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    &::before,
+    &::after {
+      top: calc(-5px);
+    }
+    &::before {
+      left: calc(var(--spectrum-global-dimension-static-size-150) * -1); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+    &::after {
+      right: calc(var(--spectrum-global-dimension-static-size-150) * -1); /* stylelint-disable-line plugin/stylelint-postcss-map */
+    }
+  }
+  
+  .DisabledDragButton {
+    opacity: 0;
+  }
+  
+  .DropIndicatorRow {
+    padding-left: map(gutter, gutterSmall);
+    padding-right: map(gutter, gutterSmall);
+  }

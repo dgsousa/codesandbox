@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src/index.jsx'),
+    entry: ['babel-polyfill', path.resolve(__dirname, 'src/index.jsx')],
 
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -34,7 +34,13 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader
                     },
-                    'css-loader'
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: true
+                        }
+                    }
                 ]
             },
             {

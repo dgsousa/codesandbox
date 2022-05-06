@@ -1,11 +1,13 @@
 import React from "react";
-import "./Styles.css";
+// import "./Styles.css";
+import ReorderableList from "./ReorderableList";
+import { Provider, defaultTheme, Checkbox } from '@adobe/react-spectrum';
 
 const App = () => {
     return (
-        <div>
-            <h1>Hello world</h1>
-        </div>
+        <Provider theme={ defaultTheme } colorScheme='light'>
+            <Checkbox />
+        </Provider>
     );
 };
 
