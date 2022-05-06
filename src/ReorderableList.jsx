@@ -33,7 +33,6 @@ const ReorderableList = () => {
   }, [listState]);
   
   return (
-    <div style={ { height: '800px', width: '500px', border: '1px solid red' } } >
     <Grid
       items={ listState.items }
       onSelectionChange={ onSelectionChange }
@@ -41,7 +40,6 @@ const ReorderableList = () => {
       selectedKeys={ listState.selectedKeys }>
       {item => <Item aria-label={ item.displayName } textValue={ item.displayName }>{item.displayName}</Item>}
     </Grid>
-    </div>
   );
 };
   

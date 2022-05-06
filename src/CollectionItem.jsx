@@ -55,7 +55,6 @@ const CollectionItem = React.memo(({
       { ...rowProps }
       ref={ rowRef }
       aria-labelledby={ id }
-      style={ { height: '100px', width: '500px', border: '1px solid green' } }
     >
       <FocusRing focusRingClass={ styles.FocusRing }>
         <div

@@ -1,12 +1,11 @@
 import React from "react";
-// import "./Styles.css";
 import ReorderableList from "./ReorderableList";
-import { Provider, defaultTheme, Checkbox } from '@adobe/react-spectrum';
+import { Provider, defaultTheme } from '@adobe/react-spectrum';
 
 const App = () => {
     return (
         <Provider theme={ defaultTheme } colorScheme='light'>
-            <Checkbox />
+            <ReorderableList />
         </Provider>
     );
 };

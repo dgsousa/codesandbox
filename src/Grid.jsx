@@ -174,7 +174,6 @@ export default function Grid({
       { ...mergeProps(collectionProps, gridProps) }
       ref={ ref }
       className={ classNames(styles, 'DroppableCollection', { IsDropTarget: isDropTarget }) }
-      style={ { height: '800px', width: '500px' } }
     >
       <GridItems
         gridState={ gridState }

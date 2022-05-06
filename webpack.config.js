@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const SOURCE_PATH = path.resolve(__dirname, './src');
 
 module.exports = {
     entry: ['babel-polyfill', path.resolve(__dirname, 'src/index.jsx')],
@@ -30,6 +31,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                include: SOURCE_PATH,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader
@@ -40,6 +42,18 @@ module.exports = {
                             importLoaders: 1,
                             modules: true
                         }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                exclude: SOURCE_PATH,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: 'css-loader'
                     }
                 ]
             },
