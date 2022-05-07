@@ -4,8 +4,6 @@ import Grid from './Grid';
 import items from './items.json';
 import { useListData } from '@adobe/react-spectrum';
 
-import styles from './ReorderableList.css';
-
   /** pass this into useListData */
 export const ReorderableListDataProps = {
   getKey: (item) => item.key,
