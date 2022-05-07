@@ -2,15 +2,14 @@ import React from 'react';
 import CollectionItem from './CollectionItem';
 
   
-const GridItems = React.forwardRef(({
+const GridItems = ({
   gridState,
   dragState,
   dropState,
   isDragging,
   isFiltering,
-}, ref) => {
-    // TODO: remove all this if https://github.com/adobe/react-spectrum/issues/3039 gets implemented
-  
+}) => {
+    
   return (
     <>
       {gridState.collection.rows.map((item) => {
@@ -28,7 +27,7 @@ const GridItems = React.forwardRef(({
       })}
     </>
   );
-});
+};
   
   export default GridItems;
   

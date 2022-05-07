@@ -5,16 +5,12 @@ import items from './items.json';
 import { useListData } from '@adobe/react-spectrum';
 
   /** pass this into useListData */
-export const ReorderableListDataProps = {
-  getKey: (item) => item.key,
-  filter: (item, filterText) => filterText === '' || item.displayName.toLowerCase().includes(filterText.toLowerCase()),
-};
+
   
 const ReorderableList = () => {
 
   const { setSelectedKeys, ...listState } = useListData({
     initialItems: items,
-    ...ReorderableListDataProps,
   });
 
   const onSelectionChange = useCallback((keys) => {
@@ -23,7 +19,7 @@ const ReorderableList = () => {
   
   
   const onMove = useCallback((keys, target) => {
-    if (target.dropPosition === 'after' || target.key === 'Id') {
+    if (target.dropPosition === 'after') {
       listState.moveAfter(target.key, keys);
     } else {
       listState.moveBefore(target.key, keys);

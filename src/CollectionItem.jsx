@@ -11,7 +11,7 @@ import { Checkbox } from '@adobe/react-spectrum';
 
 import styles from './ReorderableList.css';
 
-const CollectionItem = React.memo(({
+const CollectionItem = ({
   item,
   state,
   dragState,
@@ -94,13 +94,7 @@ const CollectionItem = React.memo(({
       </FocusRing>
     </div>
   );
-}, shouldPreventComponentUpdate);
+};
 
-function shouldPreventComponentUpdate(prevProps, newProps) {
-  if (newProps.isDragging) {
-    return true;
-  }
-  return false;
-}
 
 export default CollectionItem;

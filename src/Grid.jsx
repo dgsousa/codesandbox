@@ -179,7 +179,6 @@ export default function Grid({
         gridState={ gridState }
         dragState={ dragState }
         dropState={ dropState }
-        ref={ ref }
         isDragging={ isDragging }
         disabledKeys={ state.disabledKeys }
       />
